@@ -1,77 +1,74 @@
-// Função para enviar dados via webhook
-async function sendWebhook(webhookUrl, data) {
+async function enviarWebhook(urlWebhook, dados) {
   try {
-    const response = await fetch(webhookUrl, {
-      method: 'POST',
+    const resposta = await fetch(urlWebhook, {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(data)
-    });
+      body: JSON.stringify(dados),
+    })
 
-    if (response.ok) {
-      return true;
+    if (resposta.ok) {
+      return true
     } else {
-      console.error('Erro ao enviar os dados:', response.statusText);
-      return false;
+      console.error("Erro ao enviar os dados:", resposta.statusText)
+      return false
     }
-  } catch (error) {
-    console.error('Erro:', error);
-    return false;
+  } catch (erro) {
+    console.error("Erro:", erro)
+    return false
   }
 }
 
-// Botão para criar cards e colunas
-document.getElementById('createCardsBtn').addEventListener('click', async function () {
-  const boardID = document.getElementById('boardID').value;
-  const webhookCards = document.getElementById('webhookCards').value;
+function exibirMensagem(mensagem, ehErro = false) {
+  const elementoMensagem = document.getElementById("message")
+  elementoMensagem.textContent = mensagem
+  elementoMensagem.className = `message ${ehErro ? "error" : "success"}`
+  elementoMensagem.style.display = "block"
+  setTimeout(() => {
+    elementoMensagem.style.display = "none"
+  }, 5000)
+}
 
-  // Captura os valores das colunas
-  const columns = Array.from(document.querySelectorAll('.column-input')).map(input => input.value);
+document.getElementById("createCardsBtn").addEventListener("click", async () => {
+  const idQuadro = document.getElementById("boardID").value
+  const webhookEtiquetas = document.getElementById("webhookCards").value
 
-  if (!boardID || !webhookCards || columns.some(col => !col)) {
-    alert('Por favor, preencha todos os campos.');
-    return;
+  if (!idQuadro || !webhookEtiquetas) {
+    exibirMensagem("Por favor, preencha todos os campos.", true)
+    return
   }
 
-  const data = {
-    boardID,
-    columns
-  };
+  const dados = { idQuadro }
+  const sucesso = await enviarWebhook(webhookEtiquetas, dados)
 
-  const success = await sendWebhook(webhookCards, data);
-  if (success) {
-    alert('Webhook para criar cards e colunas enviado com sucesso!');
+  if (sucesso) {
+    exibirMensagem("Webhook para criar etiquetas e colunas enviado com sucesso!")
   } else {
-    alert('Erro ao enviar o webhook para criar cards e colunas.');
+    exibirMensagem("Erro ao enviar o webhook para criar etiquetas e colunas.", true)
   }
-});
+})
 
-// Formulário principal para criar fluxo
-document.getElementById('configForm').addEventListener('submit', async function (event) {
-  event.preventDefault(); // Impede o envio padrão do formulário
+document.getElementById("configForm").addEventListener("submit", async function (event) {
+  event.preventDefault()
 
-  // Captura os valores dos campos
-  const nomeFluxo = document.getElementById('nomeFluxo').value;
-  const urlTrello = document.getElementById('urlTrello').value;
-  const boardIdTrello2 = document.getElementById('boardIdTrello2').value;
-  const promptAtendimento = document.getElementById('promptAtendimento').value;
-  const dadosCliente = document.getElementById('dadosCliente').value;
-  const webhookFluxo = document.getElementById('webhookFluxo').value;
+  const dadosFormulario = {
+    nomeFluxo: document.getElementById("nomeFluxo").value,
+    urlTrello: document.getElementById("urlTrello").value,
+    boardIdTrello2: document.getElementById("boardIdTrello2").value,
+    promptAtendimento: document.getElementById("promptAtendimento").value,
+    dadosCliente: document.getElementById("dadosCliente").value,
+  }
 
-  // Cria o objeto com os dados do formulário
-  const formData = {
-    nomeFluxo,
-    urlTrello,
-    boardIdTrello2,
-    promptAtendimento,
-    dadosCliente
-  };
+  const webhookFluxo = document.getElementById("webhookFluxo").value
 
-  const success = await sendWebhook(webhookFluxo, formData);
-  if (success) {
-    document.getElementById('message').textContent = 'Dados enviados com sucesso!';
+  const sucesso = await enviarWebhook(webhookFluxo, dadosFormulario)
+
+  if (sucesso) {
+    exibirMensagem("Dados enviados com sucesso!")
+    this.reset()
   } else {
-    document.getElementById('message').textContent = 'Erro ao enviar os dados.';
+    exibirMensagem("Erro ao enviar os dados.", true)
   }
-});
+})
+

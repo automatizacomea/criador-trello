@@ -1,77 +1,147 @@
-// Função para enviar dados via webhook
-async function sendWebhook(webhookUrl, data) {
-  try {
-    const response = await fetch(webhookUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    });
-
-    if (response.ok) {
-      return true;
-    } else {
-      console.error('Erro ao enviar os dados:', response.statusText);
-      return false;
-    }
-  } catch (error) {
-    console.error('Erro:', error);
-    return false;
-  }
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-// Botão para criar cards e colunas
-document.getElementById('createCardsBtn').addEventListener('click', async function () {
-  const boardID = document.getElementById('boardID').value;
-  const webhookCards = document.getElementById('webhookCards').value;
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow-x: hidden;
+}
 
-  // Captura os valores das colunas
-  const columns = Array.from(document.querySelectorAll('.column-input')).map(input => input.value);
+.container {
+  background: #1a2a6c;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 600px;
+  text-align: center;
+}
 
-  if (!boardIdTrello1 || !webhookCards || columns.some(col => !col)) {
-    alert('Por favor, preencha todos os campos.');
-    return;
+.section {
+  margin-bottom: 30px;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #ff6f61;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+  color: #fff;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+input:focus, textarea:focus {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.02);
+  outline: none;
+}
+
+.columns-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.column-input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.column-input:focus {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.02);
+  outline: none;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 14px;
+  background: #ff6f61;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.submit-btn:hover {
+  background: #e0564a;
+  transform: scale(1.05);
+}
+
+#message {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #fff;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 1.5rem;
   }
 
-  const data = {
-    boardID,
-    columns
-  };
-
-  const success = await sendWebhook(webhookCards, data);
-  if (success) {
-    alert('Webhook para criar cards e colunas enviado com sucesso!');
-  } else {
-    alert('Erro ao enviar o webhook para criar cards e colunas.');
+  h2 {
+    font-size: 1.2rem;
   }
-});
 
-// Formulário principal para criar fluxo
-document.getElementById('configForm').addEventListener('submit', async function (event) {
-  event.preventDefault(); // Impede o envio padrão do formulário
-
-  // Captura os valores dos campos
-  const nomeFluxo = document.getElementById('nomeFluxo').value;
-  const urlTrello = document.getElementById('urlTrello').value;
-  const boardIdTrello2 = document.getElementById('boardIdTrello2').value;
-  const promptAtendimento = document.getElementById('promptAtendimento').value;
-  const dadosCliente = document.getElementById('dadosCliente').value;
-  const webhookFluxo = document.getElementById('webhookFluxo').value;
-
-  // Cria o objeto com os dados do formulário
-  const formData = {
-    nomeFluxo,
-    urlTrello,
-    boardIdTrello2,
-    promptAtendimento,
-    dadosCliente
-  };
-
-  const success = await sendWebhook(webhookFluxo, formData);
-  if (success) {
-    document.getElementById('message').textContent = 'Dados enviados com sucesso!';
-  } else {
-    document.getElementById('message').textContent = 'Erro ao enviar os dados.';
+  .columns-container {
+    grid-template-columns: 1fr;
   }
-});
+
+  input, textarea {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .submit-btn {
+    font-size: 14px;
+  }
+}

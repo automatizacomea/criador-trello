@@ -1,62 +1,58 @@
-{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #4a00e0, #8e2de2);
   color: #fff;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  overflow-x: hidden;
+  padding: 20px;
 }
 
 .container {
-  background: #1a2a6c;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-  width: 90%;
-  max-width: 600px;
-  text-align: center;
-  overflow-y: auto;
-  /* Adiciona rolagem vertical se necessário */
-  max-height: 90vh;
-  /* Limita a altura máxima */
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 h1 {
-  font-size: 2rem;
-  margin-bottom: 20px;
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 30px;
   color: #fff;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.section {
+.card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 30px;
   margin-bottom: 30px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
-  font-size: 1.5rem;
-  margin-bottom: 15px;
-  color: #ff6f61;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #fff;
+  text-align: center;
 }
 
 .form-group {
   margin-bottom: 20px;
-  text-align: left;
 }
 
 label {
-  font-weight: bold;
-  margin-bottom: 5px;
   display: block;
-  color: #fff;
+  margin-bottom: 8px;
+  font-weight: 600;
 }
 
 input,
@@ -64,90 +60,77 @@ textarea {
   width: 100%;
   padding: 12px;
   border: none;
-  border-radius: 6px;
-  font-size: 14px;
-  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.2);
   color: #fff;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  font-size: 16px;
+  transition: all 0.3s ease;
 }
 
 input:focus,
 textarea:focus {
-  background: rgba(255, 255, 255, 0.2);
-  transform: scale(1.02);
   outline: none;
-}
-
-.columns-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-}
-
-.column-input {
-  width: 100%;
-  padding: 10px;
-  border: none;
-  border-radius: 6px;
-  font-size: 14px;
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.column-input:focus {
-  background: rgba(255, 255, 255, 0.2);
-  transform: scale(1.02);
-  outline: none;
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
 }
 
 .submit-btn {
   width: 100%;
-  padding: 14px;
-  background: #ff6f61;
-  color: white;
+  padding: 12px;
+  background: #00c9ff;
+  color: #fff;
   border: none;
-  border-radius: 6px;
-  font-size: 16px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  transition: all 0.3s ease;
 }
 
 .submit-btn:hover {
-  background: #e0564a;
-  transform: scale(1.05);
+  background: #0099cc;
+  transform: translateY(-2px);
 }
 
-#message {
-  margin-top: 15px;
-  font-size: 14px;
-  color: #fff;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+.message {
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: 600;
 }
 
-/* Responsividade */
+.message.success {
+  background: rgba(0, 255, 0, 0.2);
+  color: #00ff00;
+}
+
+.message.error {
+  background: rgba(255, 0, 0, 0.2);
+  color: #ff0000;
+}
+
 @media (max-width: 600px) {
-  h1 {
-    font-size: 1.5rem;
-  }
-
-  h2 {
-    font-size: 1.2rem;
-  }
-
-  .columns-container {
-    grid-template-columns: 1fr;
-  }
-
-  input,
-  textarea {
-    font-size: 14px;
+  .container {
     padding: 10px;
   }
 
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  input,
+  textarea,
   .submit-btn {
     font-size: 14px;
   }
 }
+

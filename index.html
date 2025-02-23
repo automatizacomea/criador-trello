@@ -1,49 +1,32 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Criador Trello</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
   <div class="container">
-    <h1>Configurar Trello</h1>
+    <h1>Criador Trello</h1>
 
-    <!-- Seção do Webhook para Criar Card e Colunas -->
-    <div class="section">
+    <div class="card">
       <h2>Criar Etiquetas e Colunas</h2>
       <div class="form-group">
-        <label for="boardID">Board ID:</label>
-        <input type="text" id="boardID" name="boardID" placeholder="Insira o Board ID" required>
-      </div>
-
-      <div class="form-group">
-        <label>Criar Colunas:</label>
-        <div class="columns-container">
-          <input type="text" class="column-input" placeholder="Coluna 1" required>
-          <input type="text" class="column-input" placeholder="Coluna 2" required>
-          <input type="text" class="column-input" placeholder="Coluna 3" required>
-          <input type="text" class="column-input" placeholder="Coluna 4" required>
-          <input type="text" class="column-input" placeholder="Coluna 5" required>
-          <input type="text" class="column-input" placeholder="Coluna 6" required>
-          <input type="text" class="column-input" placeholder="Coluna 7" required>
-        </div>
+        <label for="boardID">boardID:</label>
+        <input type="text" id="boardID" name="boardID" placeholder="Insira o ID do Quadro" required>
       </div>
 
       <div class="form-group">
         <label for="webhookCards">Webhook - Criar Etiquetas e Colunas:</label>
-        <input type="text" id="webhookCards" name="webhookCards" placeholder="Insira o webhook para Etiquetas cards e colunas" required>
+        <input type="text" id="webhookCards" name="webhookCards" placeholder="Insira o webhook para criar etiquetas e colunas" required>
       </div>
 
-      <button type="button" id="createCardsBtn" class="submit-btn">Enviar</button>
+      <button type="button" id="createCardsBtn" class="submit-btn">Criar</button>
     </div>
 
-    <!-- Seção do Formulário Principal -->
-    <div class="section">
-      <h2>Criar Fluxo</h2>
+    <div class="card">
+      <h2>Criar Fluxo Trello</h2>
       <form id="configForm">
         <div class="form-group">
           <label for="nomeFluxo">Nome do Fluxo:</label>
@@ -56,8 +39,8 @@
         </div>
 
         <div class="form-group">
-          <label for="boardIdTrello2">Board ID Trello 2:</label>
-          <input type="text" id="boardIdTrello2" name="boardIdTrello2" placeholder="Insira o Board ID Trello 2" required>
+          <label for="boardIdTrello2">IboardID:</label>
+          <input type="text" id="boardIdTrello2" name="boardIdTrello2" placeholder="Insira o ID do Quadro Trello" required>
         </div>
 
         <div class="form-group">
@@ -75,12 +58,13 @@
           <input type="text" id="webhookFluxo" name="webhookFluxo" placeholder="Insira o webhook para criar o fluxo" required>
         </div>
 
-        <button type="submit" class="submit-btn">Enviar</button>
+        <button type="submit" class="submit-btn">Criar</button>
       </form>
-      <p id="message"></p>
     </div>
+    
+    <div id="message" class="message"></div>
   </div>
   <script src="script.js"></script>
 </body>
-
 </html>
+

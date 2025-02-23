@@ -24,10 +24,10 @@ body {
   width: 90%;
   max-width: 600px;
   text-align: center;
-}
-
-.section {
-  margin-bottom: 30px;
+  overflow-y: auto;
+  /* Adiciona rolagem vertical se necessário */
+  max-height: 90vh;
+  /* Limita a altura máxima */
 }
 
 h1 {
@@ -35,6 +35,10 @@ h1 {
   margin-bottom: 20px;
   color: #fff;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.section {
+  margin-bottom: 30px;
 }
 
 h2 {
@@ -56,7 +60,8 @@ label {
   color: #fff;
 }
 
-input, textarea {
+input,
+textarea {
   width: 100%;
   padding: 12px;
   border: none;
@@ -67,7 +72,8 @@ input, textarea {
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-input:focus, textarea:focus {
+input:focus,
+textarea:focus {
   background: rgba(255, 255, 255, 0.2);
   transform: scale(1.02);
   outline: none;
@@ -136,7 +142,8 @@ input:focus, textarea:focus {
     grid-template-columns: 1fr;
   }
 
-  input, textarea {
+  input,
+  textarea {
     font-size: 14px;
     padding: 10px;
   }

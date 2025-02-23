@@ -23,19 +23,19 @@ async function sendWebhook(webhookUrl, data) {
 
 // Botão para criar cards e colunas
 document.getElementById('createCardsBtn').addEventListener('click', async function () {
-  const boardID = document.getElementById('boardID').value; // Alterado para boardID
+  const boardID = document.getElementById('boardID').value;
   const webhookCards = document.getElementById('webhookCards').value;
 
   // Captura os valores das colunas
   const columns = Array.from(document.querySelectorAll('.column-input')).map(input => input.value);
 
-  if (!boardID || !webhookCards || columns.some(col => !col)) { // Alterado para boardID
+  if (!boardID || !webhookCards || columns.some(col => !col)) {
     alert('Por favor, preencha todos os campos.');
     return;
   }
 
   const data = {
-    boardID, // Alterado para boardID
+    boardID,
     columns
   };
 

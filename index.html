@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulário de Configuração</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Configuração de Webhook</h1>
+
+    <!-- Seção do Webhook para Criar Card e Colunas -->
+    <div class="section">
+      <h2>Criar Card e Colunas</h2>
+      <div class="form-group">
+        <label for="boardID">Board ID:</label>
+        <input type="text" id="boardID" name="boardID" placeholder="Insira o Board ID" required>
+      </div>
+
+      <div class="form-group">
+        <label>Criar Colunas:</label>
+        <div class="columns-container">
+          <input type="text" class="column-input" placeholder="Coluna 1" required>
+          <input type="text" class="column-input" placeholder="Coluna 2" required>
+          <input type="text" class="column-input" placeholder="Coluna 3" required>
+          <input type="text" class="column-input" placeholder="Coluna 4" required>
+          <input type="text" class="column-input" placeholder="Coluna 5" required>
+          <input type="text" class="column-input" placeholder="Coluna 6" required>
+          <input type="text" class="column-input" placeholder="Coluna 7" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="webhookCards">Webhook - Criar Card e Colunas:</label>
+        <input type="text" id="webhookCards" name="webhookCards" placeholder="Insira o webhook para criar cards e colunas" required>
+      </div>
+
+      <button type="button" id="createCardsBtn" class="submit-btn">Enviar</button>
+    </div>
+
+    <!-- Seção do Formulário Principal -->
+    <div class="section">
+      <h2>Criar Fluxo</h2>
+      <form id="configForm">
+        <div class="form-group">
+          <label for="nomeFluxo">Nome do Fluxo:</label>
+          <input type="text" id="nomeFluxo" name="nomeFluxo" placeholder="Insira o nome do fluxo" required>
+        </div>
+
+        <div class="form-group">
+          <label for="urlTrello">URL Trello:</label>
+          <input type="text" id="urlTrello" name="urlTrello" placeholder="Insira a URL do Trello" required>
+        </div>
+
+        <div class="form-group">
+          <label for="boardIdTrello2">Board ID Trello 2:</label>
+          <input type="text" id="boardIdTrello2" name="boardIdTrello2" placeholder="Insira o Board ID Trello 2" required>
+        </div>
+
+        <div class="form-group">
+          <label for="promptAtendimento">Prompt de Atendimento:</label>
+          <textarea id="promptAtendimento" name="promptAtendimento" rows="4" placeholder="Descreva o prompt de atendimento"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="dadosCliente">Dados a Solicitar ao Cliente:</label>
+          <textarea id="dadosCliente" name="dadosCliente" rows="4" placeholder="Descreva os dados a solicitar"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="webhookFluxo">Webhook - Criar Fluxo:</label>
+          <input type="text" id="webhookFluxo" name="webhookFluxo" placeholder="Insira o webhook para criar o fluxo" required>
+        </div>
+
+        <button type="submit" class="submit-btn">Enviar</button>
+      </form>
+      <p id="message"></p>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
